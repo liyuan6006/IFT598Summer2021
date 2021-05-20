@@ -3,5 +3,6 @@ $(document).ready(function () {
     $("#contactusSection").removeAttr("hidden");
     $("#donateSection").attr("hidden", true);
     $("#galleriesSection").attr("hidden", true);
+    $("#newsSection").attr("hidden", true);
   });
 });

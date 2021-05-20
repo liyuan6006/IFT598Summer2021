@@ -10,11 +10,20 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Local  Library-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <!-- Local js library-->
     <script type="text/javascript" src="donate.js"></script>
     <script type="text/javascript" src="galleries.js"></script>
     <script type="text/javascript" src="contactus.js"></script>
+    <script type="text/javascript" src="login.js"></script>
+    <script type="text/javascript" src="news.js"></script>
+    <!-- Local css library-->
+    <link rel="stylesheet" href="galleries.css">
     <title>Give Together</title>
 </head>
 
@@ -46,6 +55,9 @@
                     <li class="nav-item gallerisMenu">
                         <a class="nav-link" href="#">Galleries</a>
                     </li>
+                    <li class="nav-item newsMenu">
+                        <a class="nav-link" href="#">News</a>
+                    </li>
                     <li class="nav-item contactusMenu">
                         <a class="nav-link " href="#">Contact Us</a>
                     </li>
@@ -75,8 +87,8 @@
                     <li class="nav-item">
                         <a class="nav-link " href="#">Join Us</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="#">Sign In</a>
+                    <li id="btnLoginHeader" class="nav-items">
+                        <a class="nav-link " href="#">Login</a>
                     </li>
                 </ul>
 
@@ -91,10 +103,9 @@
         </p>
     </section>
     <section id="galleriesSection" class="mt-2" hidden>
-
         <div class="row">
             <div class="col-sm-3">
-                <div class="card">
+                <div id="card1" class="card">
                     <img src="images/card1.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Special title treatment</h5>
@@ -134,8 +145,44 @@
                 </div>
             </div>
         </div>
+    </section>
 
-      
+    <section id="newsSection" class="mt-2" hidden>
+        <div class="d-flex justify-content-center">
+            <h1 cen>This is a Donate section</h1>
+        </div>
+
+        <div class="row row justify-content-center">
+            <h5 class="card-title">You can drag a headline from here and drop to the right to show the headline on home
+                page</h5>
+        </div>
+        <div class="row justify-content-center mt-3 mb-3">
+            <div class="col-sm-6 card">
+                <h5 class="card-title">Drag a news from here</h5>
+                <p id="divHeadlineToPublish" draggable="true" ondragstart="drag(event)">Please donate now to provide
+                    direct cash assistance to those in need. ... </p>
+                <p id="divHeadlineToPublish2" draggable="true" ondragstart="drag(event)">Everyone has something to give
+                    ...</p>
+                <p id="divHeadlineToPublish2" draggable="true" ondragstart="drag(event)">If You have a Donor Advised
+                    Fund Giving Account
+                    ...</p>
+                <p id="divHeadlineToPublish2" draggable="true" ondragstart="drag(event)">How To Donate Your Body to
+                    Science
+                    ...</p>
+                <p id="divHeadlineToPublish2" draggable="true" ondragstart="drag(event)">The latest breaking news
+                    ...</p>
+                <p id="divHeadlineToPublish2" draggable="true" ondragstart="drag(event)">More Donations Mean More Money
+                    for Nonprofits
+                    ...</p>
+            </div>
+
+            <div class="col-sm-6 card " ondrop="drop(event)" ondragover="allowDrop(event)">
+                <h5 class="card-title">Drop here to show on home page</h5>
+                <p id="divHeadline"></p>
+            </div>
+
+        </div>
+
 
     </section>
     <section id="contactusSection" hidden>
@@ -144,6 +191,45 @@
             Hello Contact Us!
         </p>
     </section>
+
+    <!-- login Modal dialog-->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginFrom">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" value="123@abc.com"
+                                required aria-describedby="emailHelp">
+                            <div id="emailHelp" class="form-text">Please enter a valid email address.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button id="btnLogin" type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                </div>
+                <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="btnLogin" type="submit" class="btn btn-primary">Login</button>
+        </div> -->
+            </div>
+        </div>
+    </div>
 
     <footer>
         <hr />

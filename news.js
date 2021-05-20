@@ -1,9 +1,9 @@
 $(document).ready(function () {
-  $(".gallerisMenu").click(function () {
-    $("#galleriesSection").removeAttr("hidden");
+  $(".newsMenu").click(function () {
+    $("#newsSection").removeAttr("hidden");
+    $("#galleriesSection").attr("hidden", true);
     $("#donateSection").attr("hidden", true);
     $("#contactusSection").attr("hidden", true);
-    $("#newsSection").attr("hidden", true);
   });
 });
 
