@@ -1,3 +1,10 @@
+CREATE TABLE `jobtitle` (
+  `JoTitleID` int NOT NULL AUTO_INCREMENT,
+  `Name` varchar(45) NOT NULL,
+  PRIMARY KEY (`JoTitleID`),
+  UNIQUE KEY `JoTitleID_UNIQUE` (`JoTitleID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 CREATE TABLE `officer` (
   `OfficerID` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(45) NOT NULL,
@@ -9,8 +16,7 @@ CREATE TABLE `officer` (
   UNIQUE KEY `OfficerID_UNIQUE` (`OfficerID`),
   KEY `JobTitleID_idx` (`JobTitleID`),
   CONSTRAINT `FK_Officer_JobTitleID` FOREIGN KEY (`JobTitleID`) REFERENCES `jobtitle` (`JoTitleID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `office` (
   `officeid` int NOT NULL AUTO_INCREMENT,
@@ -23,24 +29,9 @@ CREATE TABLE `office` (
   UNIQUE KEY `name_UNIQUE` (`name`),
   KEY `FK_officerid_idx` (`officerid`),
   CONSTRAINT `FK_Office_OfficerID` FOREIGN KEY (`officerid`) REFERENCES `officer` (`OfficerID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `jobtitle` (
-  `JoTitleID` int NOT NULL AUTO_INCREMENT,
-  `Name` varchar(45) NOT NULL,
-  PRIMARY KEY (`JoTitleID`),
-  UNIQUE KEY `JoTitleID_UNIQUE` (`JoTitleID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
-CREATE TABLE `volunteer` (
-  `VolunteerID` int NOT NULL AUTO_INCREMENT,
-  `Name` varchar(45) NOT NULL,
-  `Age` int NOT NULL,
-  `Address` varchar(45) DEFAULT NULL,
-  `ResponsibilityDesc` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`VolunteerID`),
-  UNIQUE KEY `VolunteerID_UNIQUE` (`VolunteerID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 CREATE TABLE `event` (
   `EventID` int NOT NULL AUTO_INCREMENT,
@@ -55,7 +46,19 @@ CREATE TABLE `event` (
   UNIQUE KEY `EventID_UNIQUE` (`EventID`),
   KEY `FK_Event_Officer_idx` (`OfficerID`),
   CONSTRAINT `FK_Event_Officer` FOREIGN KEY (`OfficerID`) REFERENCES `officer` (`OfficerID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+CREATE TABLE `volunteer` (
+  `VolunteerID` int NOT NULL AUTO_INCREMENT,
+  `Name` varchar(45) NOT NULL,
+  `Age` int NOT NULL,
+  `Address` varchar(45) DEFAULT NULL,
+  `ResponsibilityDesc` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`VolunteerID`),
+  UNIQUE KEY `VolunteerID_UNIQUE` (`VolunteerID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `volunteerevent` (
   `VolunteerEventID` int NOT NULL AUTO_INCREMENT,
@@ -67,4 +70,9 @@ CREATE TABLE `volunteerevent` (
   KEY `FK_VolunteerEvent_EventID_idx` (`EventID`),
   CONSTRAINT `FK_VolunteerEvent_EventID` FOREIGN KEY (`EventID`) REFERENCES `event` (`EventID`),
   CONSTRAINT `FK_VolunteerEvent_VolunteerID` FOREIGN KEY (`VolunteerID`) REFERENCES `volunteer` (`VolunteerID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+
+
