@@ -35,13 +35,13 @@ CREATE TABLE `jobtitle` (
 
 CREATE TABLE `office` (
   `officeid` int NOT NULL AUTO_INCREMENT,
-  `Officename` varchar(45) NOT NULL,
+  `OfficeName` varchar(45) NOT NULL,
   `startdate` date DEFAULT NULL,
   `enddate` date DEFAULT NULL,
   `officerid` int DEFAULT NULL,
   PRIMARY KEY (`officeid`),
   UNIQUE KEY `officeid_UNIQUE` (`officeid`),
-  UNIQUE KEY `name_UNIQUE` (`name`),
+  UNIQUE KEY `OfficeName_UNIQUE` (`OfficeName`),
   KEY `FK_officerid_idx` (`officerid`),
   CONSTRAINT `FK_Office_OfficerID` FOREIGN KEY (`officerid`) REFERENCES `officer` (`OfficerID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
