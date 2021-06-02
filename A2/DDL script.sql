@@ -15,7 +15,7 @@ CREATE TABLE `officer` (
   `Name` varchar(45) NOT NULL,
   `Age` int NOT NULL,
   `AddressID` int DEFAULT NULL,
-  `ResponsibilityDesc` varchar(45) DEFAULT NULL,
+  `RespDesc` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`OfficerID`),
   UNIQUE KEY `OfficerID_UNIQUE` (`OfficerID`),
   KEY `FK_Officer_AddressID_idx` (`AddressID`),
@@ -23,19 +23,19 @@ CREATE TABLE `officer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `jobtitle` (
-  `JoTitleID` int NOT NULL AUTO_INCREMENT,
-  `Name` varchar(45) NOT NULL,
+  `JobTitleID` int NOT NULL AUTO_INCREMENT,
+  `JobTitle` varchar(45) NOT NULL,
   `OfficerID` int NOT NULL,
   `Salary` decimal(8,2) DEFAULT NULL,
-  PRIMARY KEY (`JoTitleID`),
-  UNIQUE KEY `JoTitleID_UNIQUE` (`JoTitleID`),
+  PRIMARY KEY (`JobTitleID`),
+  UNIQUE KEY `JobTitleID_UNIQUE` (`JobTitleID`),
   KEY `FK_JobTitle_OfficerID_idx` (`OfficerID`),
   CONSTRAINT `FK_JobTitle_OfficerID` FOREIGN KEY (`OfficerID`) REFERENCES `officer` (`officerid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `office` (
   `officeid` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
+  `Officename` varchar(45) NOT NULL,
   `startdate` date DEFAULT NULL,
   `enddate` date DEFAULT NULL,
   `officerid` int DEFAULT NULL,
@@ -72,7 +72,7 @@ CREATE TABLE `volunteer` (
   `Name` varchar(45) NOT NULL,
   `Age` int NOT NULL,
   `AddressID` int DEFAULT NULL,
-  `ResponsibilityDesc` varchar(45) DEFAULT NULL,
+  `RespDesc` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`VolunteerID`),
   UNIQUE KEY `VolunteerID_UNIQUE` (`VolunteerID`),
   KEY `FK_Volunteer_AddressID_idx` (`AddressID`),
@@ -89,7 +89,7 @@ CREATE TABLE `volunteerevent` (
   PRIMARY KEY (`VolunteerEventID`),
   UNIQUE KEY `VolunteerEventID_UNIQUE` (`VolunteerEventID`),
   KEY `FK_VolunteerEvent_VolunteerID_idx` (`VolunteerID`),
-  KEY `FK_VolunteerEvent_EventID_idx` (`EventCode`),
+  KEY `FK_VolunteerEvent_EventCode_idx` (`EventCode`),
   CONSTRAINT `FK_VolunteerEvent_EventCode` FOREIGN KEY (`EventCode`) REFERENCES `event` (`EventCode`),
   CONSTRAINT `FK_VolunteerEvent_VolunteerID` FOREIGN KEY (`VolunteerID`) REFERENCES `volunteer` (`VolunteerID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
