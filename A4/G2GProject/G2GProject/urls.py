@@ -20,6 +20,7 @@ from homeapp.views import home
 from registerapp.views import register
 from newsapp.views import news
 from galleriesapp.views import galleries
+from signupapp.views import signup
 urlpatterns = [
     path('admin/', admin.site.urls),
 
@@ -29,4 +30,5 @@ urlpatterns = [
     path('register/', register,name='register'),
     path('news/', news,name='news'),
     path('galleries/', galleries,name='galleries'),
+    path('signup/', signup,name='signup'),
 ]

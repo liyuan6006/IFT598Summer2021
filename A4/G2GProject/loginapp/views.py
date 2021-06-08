@@ -6,11 +6,10 @@ def login(request):
     if request.method=='POST':
         email=request.POST['email']
         password=request.POST['password']
-        # user = auth.authenticate(username=request.POST['username'], password=request.POST['password'])
-        # if user is not None:
-        if email=='123@abc.com'and password=='123':
+        user = auth.authenticate(username=email, password=password)
+        if user is not None:
+        # if email=='123@abc.com'and password=='123':
             return redirect('home')
-            # return render(request,'home/home.html')
         else:
             return render(request,'login/login.html',{'error':'Wrong email or password'})
     else:

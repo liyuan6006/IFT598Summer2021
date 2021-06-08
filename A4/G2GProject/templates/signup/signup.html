@@ -4,9 +4,9 @@
 
 <div class="row  row justify-content-center mt-3 mb-3">
     <div class="col-sm-4 card">
-        <h5 class="card-title">Login</h5>
+        <h5 class="card-title">Sign Up</h5>
         {{ error }}
-        <form method='POST' id="loginFrom">
+        <form method='POST' id="signupFrom">
             <!--cross-site-request-forgery-->
             {% csrf_token %}
 
@@ -20,13 +20,12 @@
                 <label for="exampleInputPassword1" class="form-label">Password</label>
                 <input type="password" name="password" class="form-control" id="exampleInputPassword1" required>
             </div>
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Remember me</label>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Verify Password</label>
+                <input type="password" name="verifyPassword" class="form-control" id="exampleInputPassword1" required>
             </div>
-           
-            <button id="btnLogin" type="submit" class="btn btn-primary">Login</button>
-            <a class="btn btn-info " href="/signup" role="button">Sign Up</a>
+       
+            <button id="btnSignup" type="submit" class="btn btn-primary">Sign Up</button>
             <a class="btn btn-secondary " href="/home" role="button">Close</a>
         </form>
     </div>
