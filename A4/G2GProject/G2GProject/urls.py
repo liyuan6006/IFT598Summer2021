@@ -21,9 +21,9 @@ from registerapp.views import register
 from newsapp.views import news
 from galleriesapp.views import galleries
 from signupapp.views import signup
+from eventapp.views import event
 urlpatterns = [
     path('admin/', admin.site.urls),
-
     path('', home),
     path('login/',login,name='login'),
     path('home/', home,name='home'),
@@ -31,4 +31,5 @@ urlpatterns = [
     path('news/', news,name='news'),
     path('galleries/', galleries,name='galleries'),
     path('signup/', signup,name='signup'),
+    path('event/', event,name='event'),
 ]
