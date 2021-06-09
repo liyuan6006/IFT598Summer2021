@@ -19,7 +19,7 @@ from loginapp.views import login
 from homeapp.views import home
 from registerapp.views import register
 from newsapp.views import news
-from galleriesapp.views import galleries
+from officersapp.views import officers
 from signupapp.views import signup
 from eventapp.views import event
 urlpatterns = [
@@ -29,7 +29,7 @@ urlpatterns = [
     path('home/', home,name='home'),
     path('register/', register,name='register'),
     path('news/', news,name='news'),
-    path('galleries/', galleries,name='galleries'),
+    path('officers/', officers,name='officers'),
     path('signup/', signup,name='signup'),
     path('event/', event,name='event'),
 ]
