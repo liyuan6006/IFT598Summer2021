@@ -1,0 +1,67 @@
+{% extends 'home/home.html' %}
+{% block content %}
+
+<div class="row  row justify-content-center mt-3 mb-3">
+    <div class="col-sm-4 card">
+        <h5 class="card-title">Create a new event</h5>
+        {{ error }}
+        <form method='POST' id="eventFrom">
+            <!--cross-site-request-forgery-->
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="inputState">Officer</label>
+                <select id="inputState" class="form-control" name="officer_name">
+                    <option selected>Select a officer</option>
+                    <option value="Leo">Leo</option>
+                    <option value="Jason">Jason</option>
+                    <option value="Thomas">Thomas</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEventName">Event name</label>
+                <input type="text" class="form-control" id="inputEventName" name="event_name">
+            </div>
+            <div class="form-group">
+                <label for="missionDesc">Mission Desc</label>
+                <textarea class="form-control" id="missionDesc" rows="3" name="mission_desc"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="objectiveDesc">Objective Desc</label>
+                <textarea class="form-control" id="objectiveDesc" rows="3" name="objective_desc"></textarea>
+            </div>
+
+
+            <div class="form-group">
+                <label for="inputAddress">Street</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="street">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputCity">City</label>
+                    <input type="text" class="form-control" id="inputCity" name="city">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputState">State</label>
+                    <select id="inputState" class="form-control" name="state">
+                        <option selected>Select a state...</option>
+                        <option value="1">AZ</option>
+                        <option value="2">MT</option>
+                        <option value="3">WY</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inputZip">Zip</label>
+                    <input type="text" class="form-control" id="inputZip" name="zipcode">
+                </div>
+            </div>
+
+            <button id="btnSignup" type="submit" class="btn btn-primary mb-1">Create a event</button>
+            <a class="btn btn-secondary  mb-1" href="/event" role="button">Close</a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

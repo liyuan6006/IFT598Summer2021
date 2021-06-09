@@ -21,7 +21,7 @@ from registerapp.views import register
 from newsapp.views import news
 from officersapp.views import officers
 from signupapp.views import signup
-from eventapp.views import event
+from eventapp.views import event,createnewevent
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home),
@@ -32,4 +32,6 @@ urlpatterns = [
     path('officers/', officers,name='officers'),
     path('signup/', signup,name='signup'),
     path('event/', event,name='event'),
+    path('createnewevent/', createnewevent,name='createnewevent'),
+    
 ]
