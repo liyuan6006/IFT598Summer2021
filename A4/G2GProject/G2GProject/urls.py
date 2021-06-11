@@ -15,23 +15,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from loginapp.views import login
-from homeapp.views import home
-from registerapp.views import register
-from newsapp.views import news
-from officersapp.views import officers
-from signupapp.views import signup
-from eventapp.views import event,createnewevent
+# from loginapp.views import login
+# from homeapp.views import home
+# from registerapp.views import register
+# from newsapp.views import news
+# from officersapp.views import officers
+# from signupapp.views import signup
+# from eventapp.views import event,createnewevent
+from g2g_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home),
-    path('login/',login,name='login'),
-    path('home/', home,name='home'),
-    path('register/', register,name='register'),
-    path('news/', news,name='news'),
-    path('officers/', officers,name='officers'),
-    path('signup/', signup,name='signup'),
-    path('event/', event,name='event'),
-    path('createnewevent/', createnewevent,name='createnewevent'),
+    path('', views.home),
+    path('home/', views.home),
+    path('login/',views.login,name='login'),
+    path('home/', views.home,name='home'),
+    path('news/', views.news,name='news'),
+    path('officers/', views.officers,name='officers'),
+    path('signup/', views.signup,name='signup'),
+    path('event/', views.event,name='event'),
+    path('createnewevent/', views.createnewevent,name='createnewevent'),
+    path('contactus/', views.contactus,name='contactus'),
     
 ]

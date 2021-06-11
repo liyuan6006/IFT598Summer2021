@@ -1,0 +1,30 @@
+{% extends 'g2g_app/home.html' %}
+{% block content %}
+
+
+<br>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Age</th>
+      <th scope="col">Resp Desc</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if officer_list_key%}
+    {% for officer in officer_list_key %}
+    <tr>
+      <th scope="row">{{officer.officerid}}</th>
+      <td>{{officer.name}}</td>
+      <td>{{officer.age}}</td>
+      <td>{{officer.respdesc}}</td>
+    </tr>
+    {%endfor%}
+    {% endif%}
+  </tbody>
+</table>
+
+
+{% endblock %}
