@@ -15,13 +15,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-# from loginapp.views import login
-# from homeapp.views import home
-# from registerapp.views import register
-# from newsapp.views import news
-# from officersapp.views import officers
-# from signupapp.views import signup
-# from eventapp.views import event,createnewevent
 from g2g_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),

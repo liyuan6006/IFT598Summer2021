@@ -3,6 +3,8 @@ from g2g_app.models import Event, Address, Officer
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib import auth
+import string
+import random
 # Create your views here.
 def home(request):
      return render(request,'g2g_app/home.html')
@@ -24,7 +26,7 @@ def officers(request):
     #  officer_list = Officer.objects.order_by('name')
      officer_list = []#fake data source for now
      for x in range(1, 8):
-        officer = Officer(officerid=x,name='fake name',age=x*10,respdesc="fake respdesc")
+        officer = Officer(officerid=x,name="random string " +string.ascii_uppercase,age=x*10,respdesc="fake respdesc")
         officer_list.append(officer)
      officer_dict ={'officer_list_key':officer_list}
      return render(request,'g2g_app/officers.html',context=officer_dict)
@@ -32,14 +34,11 @@ def officers(request):
 def news(request):
      return render(request,'g2g_app/news.html')
 
-def register(request):
-     return render(request,'register/register.html')
-
 def event(request):
      #event_list = Event.objects.order_by('eventname')
      event_list = []#fake data source for now
      for x in range(1, 8):
-         event = Event(eventname="fake eventname",missiondesc="fake missiondesc",objectivedesc="fake objectivedesc")
+         event = Event(eventname="random string: "+string.ascii_uppercase,missiondesc="fake missiondesc",objectivedesc="fake A resume objective is a summary of your qualities, abilities, experience, skills, etc. that spells out why you are well suited for the volunteering position that you are applying for. It also states why you seek the job.")
          event_list.append(event)
      event_dict = {'event_list_key': event_list}
      return render(request, 'g2g_app/event.html', context=event_dict)
