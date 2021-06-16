@@ -1,7 +1,6 @@
 <!doctype html>
-
+{% load static %}
 <html lang="en">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -12,8 +11,10 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
-    <link rel="stylesheet" href="jquery.passwordRequirements.css" />
-    <link rel="stylesheet" href="password.css" />
+    <link rel="stylesheet" href="{% static 'jquery.passwordRequirements.css' %}" />
+    <link rel="stylesheet" href="{% static 'password.css' %}" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <style>
         .error {
             color: red;
@@ -31,10 +32,10 @@
     <script type="text/javascript" src="contactus.js"></script>
     <script type="text/javascript" src="login.js"></script>
     <script type="text/javascript" src="news.js"></script>
-    <script type="text/javascript" src="form-validation.js"></script>
-    <script type="text/javascript" src="register.js"></script>
-    <script type="text/javascript" src="password.js"></script>
-    <script type="text/javascript" src="jquery.passwordRequirements.js"></script> -->
+    <script type="text/javascript" src="register.js"></script> -->
+    <script type="text/javascript" src="{% static 'password.js' %}"></script>
+    <script type="text/javascript" src="{% static 'jquery.passwordRequirements.js' %}"></script> 
+	<script type="text/javascript" src="{% static 'form-validation.js' %}"></script>
 
     <!-- Local css library-->
     <title>Give Together</title>
@@ -102,7 +103,7 @@
 
 
                     <li id="btnRegisterHeader" class="nav-item">
-                        <a class="nav-link " href="#">Register</a>
+                        <a class="nav-link " href="/signup">Register</a>
                     </li>
                     <li id="btnLoginHeader" class="nav-items">
                         <a class="nav-link " href="/login">Login</a>
@@ -167,14 +168,6 @@
         <hr />
         Copyright (C) 2021. All rights reserved.
     </footer>
-
-    <!--Boostrap Popper.js, then Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>
