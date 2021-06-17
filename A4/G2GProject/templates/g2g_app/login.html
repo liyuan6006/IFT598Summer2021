@@ -6,7 +6,7 @@
     <div class="col-sm-4 card">
         <h5 class="card-title">Login</h5>
         {{ error }}
-        <form method='POST' id="loginFrom">
+        <form method='POST' id="loginFrom" action="{% url 'login'  %}">
             <!--cross-site-request-forgery-->
             {% csrf_token %}
 
