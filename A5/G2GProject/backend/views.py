@@ -119,7 +119,7 @@ def createnewevent(request):
                 print(address.addressid)
                 print(mission_desc)
                 print(objective_desc)
-                #event = Event.objects.get_or_create(eventname=event_name, officerid=officer, addressid=address, missiondesc=mission_desc,objectivedesc=objective_desc)
+                event = Event.objects.get_or_create(eventname=event_name, officerid=officer, addressid=address, missiondesc=mission_desc,objectivedesc=objective_desc)
                 return redirect('event')
      else:
           return render(request, 'backend/createnewevent.html')   
