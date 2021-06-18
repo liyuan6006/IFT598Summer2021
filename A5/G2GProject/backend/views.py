@@ -16,7 +16,8 @@ def login(request):
         password=request.POST['password']
         user = auth.authenticate(username=email, password=password)
         if user is not None:
-            return redirect('home')
+         user_dict ={'user':user}
+         return render(request,'backend/home.html',context=user_dict)
         else:
             return render(request,'backend/login.html',{'error':'Wrong email or password'})
     else:
