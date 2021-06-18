@@ -27,6 +27,9 @@ urlpatterns = [
     path('signup/', views.signup,name='signup'),
     path('event/', views.event,name='event'),
     path('createnewevent/', views.createnewevent,name='createnewevent'),
+    path('createnewofficer/', views.createnewofficer,name='createnewofficer'),
+    path('officer/delete/<int:id>', views.deleteofficer,name='deleteofficer'),
+    path('officer/update/<int:id>', views.updateofficer,name='updateofficer'),
     path('contactus/', views.contactus,name='contactus'),
     
 ]

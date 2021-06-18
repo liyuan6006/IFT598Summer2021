@@ -1,3 +1,4 @@
+
 from django.shortcuts import render,redirect
 from backend.models import Event, Address, Officer
 from django.contrib.auth.models import User
@@ -22,9 +23,52 @@ def login(request):
         return render(request,'backend/login.html')
 
 def officers(request):
-     officer_list = Officer.objects.order_by('name')
+     officer_list = Officer.objects.order_by('addressid')
      officer_dict ={'officer_list_key':officer_list}
      return render(request,'backend/officers.html',context=officer_dict)
+
+def deleteofficer(request,id):
+    officer = Officer.objects.get(pk=id)
+    officer.delete()
+    return redirect('officers')
+ 
+#update officer
+def updateofficer(request,id):
+     if request.method == 'POST':
+         officer = Officer.objects.get(pk=id)
+         officer.name=officer_name= request.POST['officer_name']
+         officer.age= officer_age = request.POST['officer_age']
+         officer.respdesc=resp_desc = request.POST['resp_desc']
+         officer.save()
+         return redirect('officers')
+     else:
+         officer = Officer.objects.get(pk=id)
+         officer_dict ={'officer':officer}
+         return render(request, 'backend/updateofficer.html',context=officer_dict)   
+
+def createnewofficer(request):
+     if request.method == 'POST':
+          street = request.POST['street']
+          city = request.POST['city']
+          state = request.POST['state']
+          zipcode = request.POST['zipcode']
+          #create address on-the-fly and return the newly created address
+          address = Address.objects.get_or_create(street=street,city=city,state=state,zipcode=zipcode)[0]
+          officer_name= request.POST['officer_name']
+          officer_age = request.POST['officer_age']
+          resp_desc = request.POST['resp_desc']
+          num_officers = Officer.objects.filter(name=officer_name).exists()
+          if num_officers:
+               return render(request, 'backend/createnewofficer.html', {'error': 'officer name already exists'})
+          else:
+                print(officer_name)
+                print(officer_age)
+                print(address.addressid)
+                print(resp_desc)
+                officer = Officer.objects.get_or_create(name=officer_name, age=officer_age, addressid=address, respdesc=resp_desc)
+                return redirect('officers')
+     else:
+          return render(request, 'backend/createnewofficer.html')   
 
 def news(request):
      return render(request,'backend/news.html')

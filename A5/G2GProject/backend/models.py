@@ -8,7 +8,7 @@ class Address(models.Model):
     state = models.CharField(max_length=25, blank=True, null=True)  
     zipcode = models.DecimalField(max_digits=9, decimal_places=0, blank=True, null=True)  
     def __str__(self):
-        return str(self.addressid)
+        return str(self.city+self.street+self.state)
 
 class Officer(models.Model):
     officerid = models.AutoField(primary_key=True)  
@@ -18,7 +18,7 @@ class Officer(models.Model):
     respdesc = models.CharField(max_length=45, blank=True, null=True)  
 
     def __str__(self):
-        return str(self.officerid)
+        return str(self.name)
 
 class Event(models.Model):
     eventcode = models.AutoField(primary_key=True)  
@@ -33,7 +33,7 @@ class Event(models.Model):
     objectivedesc = models.CharField(max_length=225, blank=True, null=True)  
 
     def __str__(self):
-        return str(self.eventcode)
+        return str(self.eventname)
 
 class Jobtitle(models.Model):
     jobtitleid = models.AutoField(primary_key=True)  
