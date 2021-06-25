@@ -1,6 +1,5 @@
-
 from django.shortcuts import render,redirect
-from backend.models import Event, Address, Officer
+from backend.models import Event, Address, Officer,RegisterInfo
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib import auth
@@ -12,9 +11,9 @@ def home(request):
 
 def login(request):
     if request.method=='POST':
-        email=request.POST['email']
+        username=request.POST['username']
         password=request.POST['password']
-        user = auth.authenticate(username=email, password=password)
+        user = auth.authenticate(username=username, password=password)
         if user is not None:
          user_dict ={'user':user}
          return render(request,'backend/home.html',context=user_dict)
@@ -81,16 +80,29 @@ def event(request):
 
 def signup(request):
     if request.method=='POST':
+        username=request.POST['username']
+        firstname=request.POST['firstname']
+        lastname=request.POST['lastname']
         email=request.POST['email']
         password=request.POST['password']
         verifypassword=request.POST['verifyPassword']
+        gender=request.POST['gender']
+        cellphone=request.POST['cellphone']
+        dateofbirth=request.POST['dateofbirth']
+        street = request.POST['street']
+        city = request.POST['city']
+        state = request.POST['state']
+        zipcode = request.POST['zipcode']
         if password==verifypassword:
             try:
-                user = User.objects.get(username=request.POST['email'])
-                return render(request, 'backend/signup.html', {'error': 'email already exists'})
+                user = User.objects.get(username=request.POST['username'])
+                return render(request, 'backend/signup.html', {'error': 'username already exists'})
             except User.DoesNotExist: 
-                user = User.objects.create_user(username= email,email=email, password=password)
-                return redirect('home')
+                user = User.objects.create_user(username= username,email=email, password=password, first_name=firstname, last_name=lastname)
+                address = Address.objects.get_or_create(street=street,city=city,state=state,zipcode=zipcode)[0]
+                RegisterInfo.objects.get_or_create(userid=user,addressid=address,gender=gender,cellphone=cellphone,dateofbirth=dateofbirth)
+                user_dict ={'user':user}
+                return render(request,'backend/home.html',context=user_dict)
         else:
             return render(request, 'backend/signup.html', {'error': 'password does not match'})
     else:
@@ -105,8 +117,6 @@ def createnewevent(request):
           zipcode = request.POST['zipcode']
           #create address on-the-fly and return the newly created address
           address = Address.objects.get_or_create(street=street,city=city,state=state,zipcode=zipcode)[0]
-          officer_name= request.POST['officer_name']
-          officer = Officer.objects.get(name=officer_name)
           #create event entity
           event_name = request.POST['event_name']
           mission_desc = request.POST['mission_desc']
@@ -116,11 +126,10 @@ def createnewevent(request):
                return render(request, 'backend/createnewevent.html', {'error': 'event name already exists'})
           else:
                 print(event_name)
-                print(officer.officerid)
                 print(address.addressid)
                 print(mission_desc)
                 print(objective_desc)
-                event = Event.objects.get_or_create(eventname=event_name, officerid=officer, addressid=address, missiondesc=mission_desc,objectivedesc=objective_desc)
+                event = Event.objects.get_or_create(eventname=event_name, addressid=address, missiondesc=mission_desc,objectivedesc=objective_desc)
                 return redirect('event')
      else:
           return render(request, 'backend/createnewevent.html')   

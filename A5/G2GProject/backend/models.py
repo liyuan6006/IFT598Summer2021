@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 class Address(models.Model):
@@ -79,3 +80,13 @@ class Volunteerevent(models.Model):
 
     def __str__(self):
         return str(self.volunteereventid)
+
+class RegisterInfo(models.Model):
+    registerid = models.AutoField(primary_key=True)  
+    userid = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True)  
+    cellphone = models.IntegerField(blank=True, null=True)  
+    gender = models.IntegerField(blank=True, null=True)  
+    addressid = models.ForeignKey(Address, on_delete=models.DO_NOTHING, blank=True, null=True)  
+    dateofbirth=models.DateField(blank=True, null=True)  
+    def __str__(self):
+        return str(self.registerid)

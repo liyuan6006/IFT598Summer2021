@@ -5,7 +5,7 @@
 <div class="row  row justify-content-center mt-3 mb-3">
     <div class="col-sm-6 card">
         <h5 class="card-title">Create a new Officer</h5>
-        {{ error }}
+        <div style="color: red;">{{ error }}</div>
         <form method='POST' id="OfficerFrom" name="OfficerForm" action="{% url 'createnewofficer'%}" >
             <!--cross-site-request-forgery-->
             {% csrf_token %}
