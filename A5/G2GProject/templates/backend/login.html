@@ -1,42 +1,35 @@
 {% extends 'backend/home.html' %}
-
 {% block content %}
+
 
 <div class="row  row justify-content-center mt-3 mb-3">
     <div class="col-sm-4 card">
-	<div>
-	  {% if form.errors %}
-		<p>Your username and password didn't match. Please try again.</p>
-	  {% endif %}
-
-	  {% if next %}
-		{% if user.is_authenticated %}
-		  <p>Your account doesn't have access to this page. To proceed,
-		  please login with an account that has access.</p>
-		{% else %}
-		  <p>Please login to see this page.</p>
-		{% endif %}
-	  {% endif %}
-	</div>
         <h5 class="card-title">Login</h5>
-		  <form method="post" action="{% url 'login' %}" id="loginForm">
-			{% csrf_token %}
-			 <div class="mb-3">
-				<label for="inputUsername" class="form-label">Username</label>
-				<input type="username" class="form-control" name="username" id='{{form.username}}'>
-			</div>
-			<div class="mb-3">
-				<label for="InputPassword1" class="form-label">Password</label>
-				<input type="password" name="password" class="form-control" id='{{form.password}}'>
-			</div>
-			<button id='btnLogin' class='btn btn-primary' type="submit" value="login">Login</button>
-			<input type="hidden" name="next" value="{{ next }}" />
-			<a class="btn btn-info " href="/signup" role="button">Register</a>
-			<a class="btn btn-secondary " href="/home" role="button">Close</a>
-		  </form>
-		   </p>
-			<p><a class="btn btn-info" href="{% url 'password_reset' %}">Lost password?</a></p>
-	</div>
-</div>
+        <div style="color: red;">{{ error }}</div>
+        <form method='POST' id="loginFrom" action="{% url 'login'  %}">
+            <!--cross-site-request-forgery-->
+            {% csrf_token %}
 
+            <div class="mb-3">
+                <label for="username" class="form-label">User Name</label>
+                <input type="text" class="form-control" name="username" id="username" value="abc" required
+                    aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">Please enter a valid email address.</div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" id="password" value="123" required>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Remember me</label>
+            </div>
+           
+            <button id="btnLogin" type="submit" class="btn btn-primary">Login</button>
+            <a class="btn btn-info " href="/signup" role="button">Register</a>
+            <a class="btn btn-secondary " href="/home" role="button">Close</a>
+			<a class="btn btn-info" href="{% url 'password_reset' %}">Lost password?</a>
+        </form>
+    </div>
+</div>
 {% endblock %}

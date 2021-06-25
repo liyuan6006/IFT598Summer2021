@@ -19,7 +19,7 @@ def login(request):
          user_dict ={'user':user}
          return render(request,'backend/home.html',context=user_dict)
         else:
-            return render(request,'backend/login.html',{'error':'Wrong email or password'})
+            return render(request,'backend/login.html',{'error':'Wrong user name or password'})
     else:
         return render(request,'backend/login.html')
         
