@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from backend.models import Event, Address, Officer,RegisterInfo
 from django.contrib.auth.models import User
+from django.contrib.auth import logout
 from django.http import HttpResponse
 from django.contrib import auth
 import string
@@ -21,6 +22,10 @@ def login(request):
             return render(request,'backend/login.html',{'error':'Wrong email or password'})
     else:
         return render(request,'backend/login.html')
+        
+def mylogout(request):
+    logout(request)
+    return redirect('/')
 
 def officers(request):
      officer_list = Officer.objects.order_by('addressid')
