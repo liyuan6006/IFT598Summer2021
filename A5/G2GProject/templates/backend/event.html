@@ -1,0 +1,22 @@
+{% extends 'backend/home.html' %}
+{% block content %}
+<a class="btn btn-primary mt-2 mb-2 ml-2" href="/createnewevent" role="button">Create a new event</a>
+<br>
+{% if event_list_key%}
+{% for event in event_list_key %}
+
+<div class="card">
+    <div class="card-header">
+      {{event.eventname}}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"> {{event.missiondesc}}</h5>
+      <p class="card-text">{{event.objectivedesc}}</p>
+      <a href="/signup" class="btn btn-primary">Go register</a>
+    </div>
+  </div>
+<br>
+
+{%endfor%}
+{% endif%}
+{% endblock %}
