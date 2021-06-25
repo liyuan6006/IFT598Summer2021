@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from backend import views
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home),
@@ -32,6 +34,6 @@ urlpatterns = [
     path('officer/update/<int:id>', views.updateofficer,name='updateofficer'),
     path('contactus/', views.contactus,name='contactus'),
     path('api/', include('backend.api.urls')),
-    
-    
+    path('logout/', views.mylogout, name="logout"),
+    path('', include('django.contrib.auth.urls')),
 ]
