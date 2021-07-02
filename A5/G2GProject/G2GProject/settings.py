@@ -26,7 +26,7 @@ SECRET_KEY = 'v9by8*4i!r7fn6qs43^lq2b)nkx2izdf9usf8^*ircbgfg!=o1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["givetogether.herokuapp.com"]
+ALLOWED_HOSTS = ["givetogether.herokuapp.com","127.0.0.1"]
 
 
 # Application definition
